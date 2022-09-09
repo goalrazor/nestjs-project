@@ -14,14 +14,16 @@ export class UsersController {
 
     constructor(private userService: UsersService) {
     }
-@ApiOperation({summary: 'Создание пользователя'})
-@ApiResponse({status:200, type: User})
+
+    @ApiOperation({summary: 'Создание пользователя'})
+    @ApiResponse({status: 200, type: User})
     @Post()
     create(@Body() userDto: CreateUserDto) {
         return this.userService.createUser(userDto)
     }
+
     @ApiOperation({summary: 'Получить всех пользователей'})
-    @ApiResponse({status:200, type: [User]})
+    @ApiResponse({status: 200, type: [User]})
     @Roles('ADMIN')
     @UseGuards(RolesGuard)
     @Get()
@@ -30,7 +32,7 @@ export class UsersController {
     }
 
     @ApiOperation({summary: 'Выдать роль'})
-    @ApiResponse({status:200})
+    @ApiResponse({status: 200})
     @Roles('ADMIN')
     @UseGuards(RolesGuard)
     @Post('/role')
@@ -39,7 +41,7 @@ export class UsersController {
     }
 
     @ApiOperation({summary: 'Забанить пользователя'})
-    @ApiResponse({status:200})
+    @ApiResponse({status: 200})
     @Roles('ADMIN')
     @UseGuards(RolesGuard)
     @Post('/ban')
